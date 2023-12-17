@@ -8,7 +8,7 @@ permissions:
   contents: write
 jobs:
   deploy:
-    runs-on: win10
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -19,5 +19,5 @@ jobs:
           key: ${{ github.ref }}
           path: .cache
       - run: pip install mkdocs-material
-      - run: pip install pillow cairosvg
+      # - run: pip install pillow cairosvg
       - run: mkdocs gh-deploy --force
