@@ -15,6 +15,7 @@ theme:
     - navigation.expand # 打开Tab时左侧目录全部展开
     - navigation.indexes #启用节索引页后，可以将文档直接附加到节
     - search.share #搜索分享按钮
+  # search_index_only: false
   language: zh # 一些提示性的文字会变成中文
   
   palette:
@@ -92,6 +93,8 @@ plugins:
       categories_name: Categories
       categories_url_format: "category/{slug}"
       authors_file: "{blog}/.authors.yml"
+  - search:
+      separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
 
 markdown_extensions:
   - abbr
