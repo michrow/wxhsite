@@ -1,3 +1,12 @@
+---
+title: 首页
+tags:
+  - Mkdocs
+hide:
+  #- navigation # 显示右侧导航
+  #- toc #显示左侧导航
+---
+
 # Homepage
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).

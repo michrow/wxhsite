@@ -2,31 +2,52 @@ site_name: My Notes
 theme:
   name: material
   features:
-    - navigation.tabs
-    - navigation.sections
-    - toc.integrate
-    - navigation.top
-    - search.suggest
-    - search.highlight
-    - content.tabs.link
-    - content.code.annotation
-    - content.code.copy
-  language: en
+    - navigation.instant 
+    - header.autohide  #自动隐藏
+    # - announce.dismiss #呈现可标记为由用户读取的临时公告，可以包含一个用于取消当前公告的按钮
+    - navigation.tracking #地址栏中的 URL 将自动更新为在目录中突出显示的活动锚点
+    - navigation.tabs #顶级部分将呈现在上面视口标题下方的菜单层中，但在移动设备上保持原样
+    - navigation.tabs.sticky  #启用粘性选项卡后，导航选项卡将锁定在标题下方，并在向下滚动时始终保持可见
+    #- navigation.sections #启用部分后，顶级部分在边栏中呈现为1220px以上视口的组，但在移动设备上保持原样
+    - navigation.top # 返回顶部的按钮 在上滑时出现
+    - search.suggest # 搜索输入一些字母时推荐补全整个单词
+    - search.highlight # 搜索出的文章关键词加入高亮
+    - navigation.expand # 打开Tab时左侧目录全部展开
+    - navigation.indexes #启用节索引页后，可以将文档直接附加到节
+    - search.share #搜索分享按钮
+  language: zh # 一些提示性的文字会变成中文
+  
   palette:
     - scheme: default
       toggle:
-        icon: material/toggle-switch-off-outline 
+        icon: material/weather-night
         name: Switch to dark mode
       primary: teal
       accent: purple 
     - scheme: slate 
       toggle:
-        icon: material/toggle-switch
+        icon: material/weather-sunny
         name: Switch to light mode    
       primary: teal
       accent: lime
+  icon: 
+    repo: fontawesome/brands/github #右上角图标
+edit_uri: edit/main/docs # 编辑按钮跳转的链接 
+repo_url: https://github.com/michrow/wxhsite # 右上角点击跳转的链接
+repo_name: wxhsite # 右上角的名字
+
+nav:
+  - 主页: index.md
+  - 博客:
+    - blog/index.md
+  - 标签: tags.md
+  - 关于: 
+    - about/about.md
+    - about/build.md
+    - about/help.md
 
 extra:
+  # generator: false #删除页脚显示“使用 MkDocs 材料制造”
   social:
     - icon: fontawesome/brands/github-alt
       link: https://github.com/james-willett
@@ -35,22 +56,77 @@ extra:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/willettjames/
 
+plugins:
+  - tags:
+      tags_file: tags.md
+  - blog:
+      enabled: true
+      blog_dir: blog
+      blog_toc: true
+      post_date_format: short
+      post_url_date_format: yyyy/MM/dd
+      post_url_format: "{date}/{slug}"
+      post_url_format: "{categories}/{slug}"
+      post_url_max_categories: 2      
+      post_slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+      post_slugify_separator: _  
+      post_excerpt: optional  
+      post_excerpt_max_authors: 0   
+      post_excerpt_max_categories: 2
+      post_excerpt_separator: <!-- more -->
+      post_readtime: true
+      post_readtime_words_per_minute: 300
+      archive: true
+      archive_name: Archive
+      archive_date_format: yyyy
+      archive_url_date_format: yyyy
+      archive_url_format: "archive/{date}"      
+      pagination: true
+      pagination_per_page: 5
+      pagination_url_format: "page/{page}"
+      pagination_format: "~2~"
+      archive_toc: true
+      categories: true
+      categories_name: Categories
+      categories_url_format: "category/{slug}"
+      authors_file: "{blog}/.authors.yml"
+
 markdown_extensions:
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - admonition
-  - pymdownx.arithmatex:
-      generic: true
-  - footnotes
-  - pymdownx.details
-  - pymdownx.superfences
+  - abbr
+  - pymdownx.caret
   - pymdownx.mark
+  - pymdownx.tilde
+  - md_in_html
+  - pymdownx.arithmatex:  # latex支持
+      generic: true
+  - toc:
+      permalink: true # 固定标题位置为当前位置
+  - pymdownx.highlight: # 代码块高亮
+      anchor_linenums: true
+      # linenums: true # 显示行号
+      # auto_title: true # 显示编程语言名称
+  - pymdownx.inlinehilite
+  - admonition
+  - pymdownx.details
+  # - pymdownx.snippets
+  - pymdownx.superfences
   - attr_list
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - meta # 支持Markdown文件上方自定义标题标签等
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - tables
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
 
 copyright: |
-  &copy; 2023 <a href="https://github.com/james-willett"  target="_blank" rel="noopener">James Willett</a>
+  &copy; 2023 <a href="https://github.com/michrow"  target="_blank" rel="noopener">wangxh</a>
